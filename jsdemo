@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS小白简易弹幕</title>
+	<style type="text/css">
+		.screen{
+			width: 1000px;
+			height:500px;
+			background: white;
+			border: 5px solid #ADADAD;
+			overflow: hidden;
+			border-radius: 20px;
+		}
+		.screen div{
+			animation:move 5s ;
+			position:relative;
+		}
+		#pt{
+			position:absolute;
+			left: 200px;
+			width: 400px;
+		}
+		#submit{
+			position:absolute;
+			left: 610px;
+			background: #F0F0F0;
+		}
+		@keyframes move{
+			from {left:0px;}
+			to {left:1000px;}
+		}
+	</style>
+</head>
+<body>	
+		<div class="screen" id="myscreen"></div>
+		<input  id="pt" type="text" name="" placeholder="请输入内容!">
+		<button id="submit" onclick="send()">发送弹幕</button>
+		<script>
+			function getColor(){
+			var Color=['red','green','blue','orange','pink','cyan','purple','black'];
+				var  rnumber=Math.floor(Math.random()*8); 
+				var myColor=Color[rnumber];	
+				return myColor
+				}	
+			function send(){
+			var ms=document.getElementById('myscreen');
+			var val=document.getElementById('pt').value;
+			var cdiv=document.createElement('div');
+			var txt=document.createTextNode(val);
+				cdiv.appendChild(txt);
+				cdiv.style.left="1500px";
+				cdiv.style.color=getColor();
+				ms.appendChild(cdiv);
+				setTimeout(function(){
+					ms.removeChild(cdiv)
+				},10000)
+			}		  		
+		</script>
+</body>
+</html>
